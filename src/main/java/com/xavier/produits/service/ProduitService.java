@@ -2,18 +2,22 @@ package com.xavier.produits.service;
 
 import java.util.List;
 
-
+import com.xavier.produits.dto.ProduitDTO;
 import com.xavier.produits.entities.Categorie;
 import com.xavier.produits.entities.Produit;
 
 public interface ProduitService {
 
-	Produit saveProduit(Produit p);
-	Produit updateProduit(Produit p);
+	ProduitDTO saveProduit(ProduitDTO p);
+	ProduitDTO updateProduit(ProduitDTO p);
+	ProduitDTO getProduit(Long id);
+	List<ProduitDTO> getAllProduits();
+	
+	
 	void deleteProduit(Produit p);
 	void deleteProduitById(Long id);
-	Produit getProduit(Long id);
-	List<Produit> getAllProduits();
+	
+	
 	List<Produit> findByNomProduit(String nomProduit);
 	List<Produit> findByNomProduitContains(String nomProduit);
 	List<Produit> findByNomPrix(String nom,Double prix);
@@ -21,4 +25,7 @@ public interface ProduitService {
 	List<Produit> findByCategorieIdCat(Long id);
 	List<Produit> findByOrderByNomProduitAsc();
 	List<Produit> trierProduitsNomsPrix();
+	
+	ProduitDTO convertEntityTODto(Produit p);
+	Produit convertDtoToEntity(ProduitDTO dto);
 }

@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.xavier.produits.dto.ProduitDTO;
 import com.xavier.produits.entities.Produit;
 import com.xavier.produits.service.ProduitService;
 
@@ -26,23 +28,23 @@ public class ProduitRESTController {
 	ProduitService produitService;
 	
 	@GetMapping
-	List<Produit> getAllProduits() {
+	List<ProduitDTO> getAllProduits() {
 		return produitService.getAllProduits();
 	}
 	
 	@GetMapping(value = "/{id}")
-	public Produit getProduitById(@PathVariable("id") Long id) {
+	public ProduitDTO getProduitById(@PathVariable("id") Long id) {
 		return produitService.getProduit(id);
 	}
 	
 	@PostMapping("/creer")
-	public ResponseEntity<Produit> createProduit(@RequestBody Produit produit) {
-		return ResponseEntity.ok(produitService.saveProduit(produit));
+	public ResponseEntity<ProduitDTO> createProduit(@RequestBody ProduitDTO produitDTO) {
+		return ResponseEntity.ok(produitService.saveProduit(produitDTO));
 	}
 	
-	@PutMapping("/update")
-	public ResponseEntity<Produit> updateProduit(@RequestBody Produit produit) {
-		return ResponseEntity.ok(produitService.updateProduit(produit));
+	@PatchMapping("/update")
+	public ResponseEntity<ProduitDTO> updateProduit(@RequestBody ProduitDTO produitDTO) {
+		return ResponseEntity.ok(produitService.updateProduit(produitDTO));
 	}
 	
 	@DeleteMapping(value = "/{id}")
